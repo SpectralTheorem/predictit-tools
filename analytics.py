@@ -18,11 +18,10 @@ import importlib
 import requests
 import string 
 import pandas as pd
-import time   # ?? 
+import time   
 import datetime as dt
 
 from apiwrapper import *
-
 
 # +
 # get the raw string time of a particular market's dataframe
@@ -41,9 +40,9 @@ def getDateTime( time_str ):
         return dt.datetime.strptime(time_str, '%Y-%m-%dT%H:%M:%S.%f')  
     else:
         print(f"Unfamiliar with the time format: {time_str} with length {len(time_str)}")
+        return dt.datetime.now()
 
 # return a more comprehensible time format
-
 def getHumanTime(time):
     if(type(time) == str):  # seems like leverage python/ duck typing, wbn
         if(len(time) <= 4):
@@ -69,30 +68,3 @@ def getMarket(mkt_id, market_data=None):
 
     mkt_df = mkt_df.drop(labels=lesser_labels, axis=1)
     return mkt_df
-
-# +
-# twelve46 = getAllMarketsList()
-
-# for mkt_id in getIdIndexList(market_data=twelve46):
-#     display(getRawMarketInfo(mkt_id, market_data=twelve46))
-    
-# for mkt_id in getIdIndexList(market_data=leet):
-    #getMarket(mkt_id, market_data=leet)
-    
-#min_wage_23 = getMarket(7075, market_data=leet)
-#min_wage_25 = getMarket(7075)
-
-# display(min_wage_23)
-# display(min_wage_25)
-
-# min_wage = min_wage_23.append(min_wage_25)
-# 
-# min_wage
-
-# +
-# for market_id in getIdIndexList(market_data=whole_market_data):
-#     contract_df = getContractsDataFrame(market_id, market_data=whole_market_data)
-#     if inSweetSpot(contract_df["lastClosePrice"][0], 0.94, 0.02): display(contract_df.filter(items=["shortName", "lastClosePrice"])) 
-# -
-
-
